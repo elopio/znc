@@ -1,0 +1,28 @@
+name: znc
+version: master
+summary: An advanced IRC bouncer
+description: |
+  an advanced IRC bouncer that is left connected so an IRC client can
+  disconnect/reconnect without losing the chat session.
+
+grade: devel
+confinement: strict
+
+apps:
+  znc:
+    command: znc
+    plugs: [network, network-bind]
+  buildmod:
+    command: znc-buildmod
+
+parts:
+  znc:
+    source: .
+    plugin: cmake
+    build-packages:
+      - g++
+      - libssl-dev
+      - libperl-dev
+      - pkg-config
+      - swig3.0
+      - libicu-dev
